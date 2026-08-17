@@ -4,105 +4,286 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MARS — Website Maintenance</title>
+  <title>MARS — Temporarily Offline</title>
 
-  <meta name="description" content="MARS — Modern Analytics & Research Solutions">
+  <meta name="description" content="MARS — Modern Analytics and Research Solutions">
 
   <link rel="icon" href="assets/favicon-32.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
+    :root {
+      --background: #0b0c0e;
+      --text: #f5f5f5;
+      --muted: #a6a8ad;
+      --subtle: #686b71;
+      --line: rgba(255,255,255,0.10);
+      --accent: #ffffff;
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      margin: 0;
+    html {
       min-height: 100%;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255,255,255,0.055) 0%,
+          rgba(255,255,255,0.018) 24%,
+          transparent 52%
+        ),
+        var(--background);
+      color: var(--text);
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111111;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      text-align: center;
-      padding: 40px 24px;
+      flex-direction: column;
     }
 
-    .container {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 25%,
+        black 75%,
+        transparent 100%
+      );
+    }
+
+    .top-line {
       width: 100%;
-      max-width: 720px;
+      height: 2px;
+      background: #ffffff;
+      opacity: 0.9;
+    }
+
+    header {
+      width: 100%;
+      padding: 42px 6vw;
     }
 
     .logo {
-      width: min(280px, 70vw);
+      display: block;
+      width: 190px;
       height: auto;
-      margin-bottom: 60px;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 100px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+      margin-top: -40px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 30px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      opacity: 0.8;
     }
 
     h1 {
-      margin: 0 0 24px;
-      font-size: clamp(30px, 5vw, 48px);
-      line-height: 1.1;
+      margin: 0;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
       font-weight: 600;
-      letter-spacing: -0.02em;
     }
 
-    p {
-      margin: 0 auto;
-      max-width: 620px;
+    .intro {
+      max-width: 610px;
+      margin: 30px auto 0;
+      color: var(--muted);
       font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.65;
-      color: #d0d0d0;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
-    a {
-      color: #ffffff;
-      text-decoration: underline;
-      text-underline-offset: 4px;
+    .contact {
+      margin-top: 42px;
     }
 
-    a:hover {
-      opacity: 0.75;
+    .contact-label {
+      margin-bottom: 12px;
+      color: var(--subtle);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .footer {
-      margin-top: 70px;
-      font-size: 13px;
-      color: #777777;
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 4px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .contact a:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.35);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      width: 100%;
+      padding: 28px 6vw 34px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--subtle);
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    footer span:last-child {
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 24px;
+      }
+
+      .logo {
+        width: 155px;
+      }
+
+      main {
+        padding: 50px 24px 80px;
+      }
+
+      .content {
+        margin-top: -10px;
+      }
+
+      h1 {
+        font-size: clamp(38px, 11vw, 54px);
+      }
+
+      .intro {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      footer span:last-child {
+        text-align: left;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main class="container">
+  <div class="top-line"></div>
 
+  <header>
     <img
       class="logo"
       src="assets/MARS_Logo_White.png"
-      alt="MARS"
+      alt="MARS — Modern Analytics and Research Solutions"
     >
+  </header>
 
-    <h1>Welcome to MARS.</h1>
+  <main>
+    <section class="content">
 
-    <p>
-      Our website is currently undergoing maintenance and should be back
-      online shortly. For questions or assistance, please contact
-      <a href="mailto:dstone@mars-logic.com">dstone@mars-logic.com</a>.
-    </p>
+      <div class="status">
+        <span class="status-dot"></span>
+        Website maintenance
+      </div>
 
-    <div class="footer">
-      Modern Analytics &amp; Research Solutions
-    </div>
+      <h1>
+        We're making a few improvements.
+      </h1>
 
+      <p class="intro">
+        The MARS website is temporarily offline while we make some updates.
+        We'll be back shortly. In the meantime, if you have a question or
+        need assistance, we'd be happy to hear from you.
+      </p>
+
+      <div class="contact">
+        <div class="contact-label">Get in touch</div>
+
+        <a href="mailto:dstone@mars-logic.com">
+          dstone@mars-logic.com
+        </a>
+      </div>
+
+    </section>
   </main>
+
+  <footer>
+    <span>MARS</span>
+    <span>Modern Analytics &amp; Research Solutions</span>
+  </footer>
 
 </body>
 </html>
